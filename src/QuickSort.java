@@ -8,30 +8,30 @@ public class QuickSort {
 
 		// 範囲の真ん中の値を基準値とする
 		int pivotValue = data[ ( start + end ) / 2];
-		int right = start;
-		int left = end;
+		int left = start;
+		int right = end;
 
 		while( true ) {
 			// 基準値よりも小さい値を、基準値よりも左から探す
-			while(data[right] < pivotValue) { right++; }
+			while(data[left] < pivotValue) { left++; }
 
 			// 基準値よりも大きい値を、基準値よりも右から探す
-			while(data[left] > pivotValue) { left--; }
+			while(data[right] > pivotValue) { right--; }
 
-			if (right<=left) {
+			if (left <= right) {
 				// 値を交換する
 				replacement(data, right, left);
-				right++;
-				left--;
+				left++;
+				right--;
 				break;
 			}
 		}
 
 		// 基準値よりも左側を整列
-		quick_sort(data, start, left);
+		quick_sort(data, start, right);
 
 		// 基準値よりも右側を整列
-		quick_sort(data, right, end);
+		quick_sort(data, left, end);
 	}
 
 	private static void replacement(int[] data, int s, int e) {
